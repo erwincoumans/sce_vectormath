@@ -1,0 +1,7 @@
+test/bin/
+test/vs2008/
+test/vs2010/
+test/vs2005/
+test/lib/
+test/.gitattributes
+

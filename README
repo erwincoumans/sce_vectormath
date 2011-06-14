@@ -1,0 +1,39 @@
+	Vector math library
+
+
+* Overview
+
+  The Vector math library provides 3-D/4-D vector operations including
+  addition, outer product, multiply by a matrix, quaternion etc.
+
+
+* License
+
+  This library is licensed under the terms in the file 'LICENSE' in
+  this directory. (BSD license)
+
+* Usage
+
+  See the documents `doc/*.pdf'.
+
+  No shared library, static library nor executable is installed,
+  because all functions in this library are provided as inline
+  functions. Copy the appropriate header files into your project.
+
+* Contacting the project
+
+  Module maintainer: Erwin Coumans
+
+  Feedback and patches:
+    http://www.bulletphysics.com/Bullet/phpBB2/viewforum.php?f=18
+	
+  Main repository URL:
+	https://github.com/erwincoumans/sce_vectormath
+	(moved from http://bullet.googlecode.com/svn/trunk/Extras/vectormathlibrary)
+
+* Example usage:
+
+	See physics effects sample code in https://github.com/erwincoumans/bullet3
+
+---
+EOF

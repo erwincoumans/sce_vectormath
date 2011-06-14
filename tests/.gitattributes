@@ -1,0 +1,9 @@
+*.txt           text
+*.bat           eol=crlf
+*.vcproj        eol=crlf
+*.sln           eol=crlf
+*.filters       eol=crlf
+*.user          eol=crlf
+*.vcxproj       eol=crlf
+*.sh            eol=lf
+*.jpg           -text
