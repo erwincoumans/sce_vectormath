@@ -95,6 +95,15 @@ union SSEFloat
 	SSEFloat() {}//uninitialized
 };
 
+union scalar_converter
+{
+    unsigned int ui;
+    float f;
+    scalar_converter(unsigned int ui) : ui(ui) {}
+    scalar_converter(float f) : f(f) {}
+    scalar_converter() {}
+};
+
 static VECTORMATH_FORCE_INLINE __m128 vec_sel(__m128 a, __m128 b, __m128 mask)
 {
 	return _mm_or_ps(_mm_and_ps(mask, b), _mm_andnot_ps(mask, a));
@@ -105,12 +114,12 @@ static VECTORMATH_FORCE_INLINE __m128 vec_sel(__m128 a, __m128 b, const unsigned
 }
 static VECTORMATH_FORCE_INLINE __m128 vec_sel(__m128 a, __m128 b, unsigned int _mask)
 {
-	return vec_sel(a, b, _mm_set1_ps(*(float *)&_mask));
+        return vec_sel(a, b, _mm_set1_ps(scalar_converter(_mask).f));
 }
 
 static VECTORMATH_FORCE_INLINE __m128 toM128(unsigned int x)
 {
-    return _mm_set1_ps( *(float *)&x );
+    return _mm_set1_ps(scalar_converter(x).f);
 }
 
 static VECTORMATH_FORCE_INLINE __m128 fabsf4(__m128 x)
