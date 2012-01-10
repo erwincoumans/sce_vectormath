@@ -135,11 +135,21 @@ boolInVec::boolInVec(const floatInVec &vec)
     *this = (vec != floatInVec(0.0f));
 }
 
+union boolInVec_converter
+{
+    __m128 m128;
+    bool b;
+    float f;
+    int i;
+    boolInVec_converter(int i) : i(i) {}
+    boolInVec_converter(__m128 m128) : m128(m128) {}
+    boolInVec_converter() {}
+};
+
 inline
 boolInVec::boolInVec(bool scalar)
 {
-    unsigned int mask = -(int)scalar;
-	mData = _mm_set1_ps(*(float *)&mask); // TODO: Union
+    mData = _mm_set1_ps(boolInVec_converter(-(int)scalar).f);
 }
 
 #ifdef _VECTORMATH_NO_SCALAR_CAST
@@ -151,7 +161,7 @@ inline
 boolInVec::operator bool() const
 #endif
 {
-	return *(bool *)&mData;
+    return boolInVec_converter(mData).b;
 }
 
 inline
