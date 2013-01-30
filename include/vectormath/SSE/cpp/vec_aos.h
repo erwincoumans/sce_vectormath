@@ -575,11 +575,11 @@ VECTORMATH_FORCE_INLINE Vector3 & Vector3::operator /=( const floatInVec &scalar
 
 VECTORMATH_FORCE_INLINE const Vector3 Vector3::operator -( ) const
 {
-	//return Vector3(_mm_sub_ps( _mm_setzero_ps(), mVec128 ) );
+    //return Vector3(_mm_sub_ps( _mm_setzero_ps(), mVec128 ) );
 
-	VM_ATTRIBUTE_ALIGN16 static const int array[] = {0x80000000, 0x80000000, 0x80000000, 0x80000000};
-	__m128 NEG_MASK = SSEFloat(*(const vec_float4*)array).vf;
-	return Vector3(_mm_xor_ps(get128(),NEG_MASK));
+    VM_ATTRIBUTE_ALIGN16 static const unsigned int array[] = {0x80000000, 0x80000000, 0x80000000, 0x80000000};
+    __m128 NEG_MASK = SSEFloat(*(const vec_float4*)array).vf;
+    return Vector3(_mm_xor_ps(get128(),NEG_MASK));
 }
 
 VECTORMATH_FORCE_INLINE const Vector3 operator *( float scalar, const Vector3 &vec )
